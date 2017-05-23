@@ -1,8 +1,28 @@
 # OpenAirInterface5G - SDR and Cloud based deployment
 This tutorial is intended to setup all the OpenAirInterface5G components using the S1 interface, placing the core components in a cloud based system. The connection between OAI-UE and the OAI-eNB will be carried out by using USRP B210 SDR cards connected using wires and the selected cloud system where cloud components will be deployed will be OpenStack.
 
-## Hardware setup:
+## Hardware setup
 The proposed deployment has been tested using the hardware showed in the following figure:
+
+![Alt text](/hw_configuration.PNG?raw=true "Optional Title")
+
+The attenuation between UE and eNB should be adjusted between 40 and 60 dB.
+
+## Core components deployment (HSS, MME and SP-GW).
+The core components will be deployed in a cloud based system. In this tutorial, we are going to use OpenStack as a virtual machines manager. For this deployment we need three virtual machines, one per OpenAirCN componet with the following configuration:
+* Ubuntu 14.04 LTS (32-bits or 64-bits)
+* Install git 
+  * `sudo apt-get install git`
+* Download the latest development branch of OpenAir-cn
+  * `git clone https://gitlab.eurecom.fr/oai/openair-cn.git`
+  * `git checkout develop`
+  * `git fetch && git pull`
+
+### Core Components Network Configuration
+Once we have our virtual machines running, we have to configure all the network devices in order to allow the communication between them. We propose the following network configuration (OpenStack):
+
+![Alt text](/oai-cn_network_config.PNG?raw=true "Optional Title")
+
 
 ## Getting Started
 
