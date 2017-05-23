@@ -191,8 +191,11 @@ P-GW =
 };
 
 ```
-
 </details>
+
+## OAI eNB deployment
+
+## OAI UE deployment
 
 ## Authors
 
