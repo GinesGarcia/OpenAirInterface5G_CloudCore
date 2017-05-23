@@ -1,1 +1,1 @@
-# OpenAirInterface5G_CloudCore
+# OpenAirInterface5G - SDR and Cloud based deployment
