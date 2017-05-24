@@ -193,8 +193,55 @@ P-GW =
 ```
 </details>
 
+## Kernel requirements for eNB and UE
+
+### Low-latency kernel installation
+To install the low-latency kernel 3.19 on top of Ubuntu 14.04, 64-bit architecture type
+* `sudo apt-get install linux-image-3.19.0-61-lowlatency linux-headers-3.19.0-61-lowlatency`
+
+### Power management
+Remove all power management features in the BIOS (sleep states, in particular C-states) and CPU frequency scaling (Intel SpeedStep). In some cases, you can also do this with cpufreqtool. Also, disable hyperthreading in BIOS and make sure its turned off in Linux
+* [Disable CPU frequency scaling](https://askubuntu.com/questions/523640/how-i-can-disable-cpu-frequency-scaling-and-set-the-system-to-performance)
+* Disable p-state and c-state in linux
+  * `sudo vim /etc/default/grub`
+  ```
+  GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_pstate=disable"
+  ```
+  * `sudo update-grub`
+* Append "blacklist intel_powerclamp" to the end of /etc/modprobe.d/blacklist.conf, to blacklist the intel_powerclamp" module. If the file does not exist, create one, and add the line into it.
+* You also need to disable hyperthreading, CPU frequency control, C-States, P-States and any other power management from BIOS as well.
+
 ## OAI eNB deployment
-Under construction
+### Build eNB
+Build the eNB supporting USRP B210
+* `cd ~/openairinterface5g`
+* `source oaienv` - It sets the environment variables with the needed values 
+* `cd cmake_targets`
+* `./build_oai -I -w USRP --eNB` - The "-I" option is needed only once, then you can build without this option
+This should starts the building process in ~/openairinterface5g/cmake_targets/lte_build_oai.
+```
+////////// MME parameters:
+mme_ip_address      = ( { ipv4       = "192.168.100.103";
+                          ipv6       = "192:168:30::17";
+                          active     = "yes";
+                          preference = "ipv4";
+                        }
+                      );
+
+NETWORK_INTERFACES :
+{
+    ENB_INTERFACE_NAME_FOR_S1_MME            = "eth1";
+    ENB_IPV4_ADDRESS_FOR_S1_MME              = "192.168.100.102/24";
+
+    ENB_INTERFACE_NAME_FOR_S1U               = "eth1";
+    ENB_IPV4_ADDRESS_FOR_S1U                 = "192.168.100.102/24";
+    ENB_PORT_FOR_S1U                         = 2152; # Spec 2152
+};
+```
+
+### eNB configuration to Access OpenStack-Based core network
+Now, we have to specify how the core components could be accessed by the eNB. Remember that we are going to use a VPN to provide IP level connectivity between the eNB and the core components located at the eNB. It is important to take into account that core components must be able to reach the eNB, because it will act as VPN server as we mentioned before.
+
 
 ## OAI UE deployment
 Under construction
