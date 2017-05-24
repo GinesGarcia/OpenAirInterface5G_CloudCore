@@ -202,5 +202,8 @@ Under construction
 ## Authors
 Under construction
 
+## Acknowledgments
+* [5G Norma](https://5gnorma.5g-ppp.eu/)
+
 
 
