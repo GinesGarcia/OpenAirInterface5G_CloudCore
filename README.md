@@ -295,6 +295,7 @@ When all the componets are well connected, we need to check the routes that we h
 
 ## Authors
 Ginés García Avilés [website](http://people.networks.imdea.org/~gines_garcia/)
+
 Carlos Donato Morales [website](http://people.networks.imdea.org/~carlos_donato/)
 
 ## Acknowledgments
