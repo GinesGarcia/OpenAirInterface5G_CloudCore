@@ -219,9 +219,16 @@ Build the eNB supporting USRP B210
 * `cd cmake_targets`
 * `./build_oai -I -w USRP --eNB` - The "-I" option is needed only once, then you can build without this option
 This should starts the building process in ~/openairinterface5g/cmake_targets/lte_build_oai.
+
+### eNB configuration to Access OpenStack-Based core network
+Now, we have to specify how the core components could be accessed by the eNB. Remember that we are going to use a VPN to provide IP level connectivity between the eNB and the core components located at the eNB. It is important to take into account that core components must be able to reach the eNB, because it will act as VPN server as we mentioned before.
+
+Let's modify the configuration file that will be used when running the eNB in order to allow it to reach the core components.
+* Modify the eNB's configuration file
+  * `vim ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.tm1.usrpb210.conf`
 ```
 ////////// MME parameters:
-mme_ip_address      = ( { ipv4       = "192.168.100.103";
+mme_ip_address      = ( { ipv4       = "VPN_MME_IP";
                           ipv6       = "192:168:30::17";
                           active     = "yes";
                           preference = "ipv4";
@@ -230,21 +237,27 @@ mme_ip_address      = ( { ipv4       = "192.168.100.103";
 
 NETWORK_INTERFACES :
 {
-    ENB_INTERFACE_NAME_FOR_S1_MME            = "eth1";
-    ENB_IPV4_ADDRESS_FOR_S1_MME              = "192.168.100.102/24";
+    ENB_INTERFACE_NAME_FOR_S1_MME            = "TUN_IFACE";
+    ENB_IPV4_ADDRESS_FOR_S1_MME              = "TUN_IFACE_IP/NETMASK";
 
-    ENB_INTERFACE_NAME_FOR_S1U               = "eth1";
-    ENB_IPV4_ADDRESS_FOR_S1U                 = "192.168.100.102/24";
+    ENB_INTERFACE_NAME_FOR_S1U               = "TUN_IFACE";
+    ENB_IPV4_ADDRESS_FOR_S1U                 = "TUN_IFACE_IP/NETMASK";
     ENB_PORT_FOR_S1U                         = 2152; # Spec 2152
 };
 ```
-
-### eNB configuration to Access OpenStack-Based core network
-Now, we have to specify how the core components could be accessed by the eNB. Remember that we are going to use a VPN to provide IP level connectivity between the eNB and the core components located at the eNB. It is important to take into account that core components must be able to reach the eNB, because it will act as VPN server as we mentioned before.
+This configuration file contains all the different parameters of the eNB such as number of resource blocks that will be used, band, rx/tx gain, etc. In case you want to run the eNB with other configuration, refer to this file.
 
 
 ## OAI UE deployment
-Under construction
+### Build UE
+Build the UE supporting USRP B210
+* `cd ~/openairinterface5g`
+* `source oaienv` - It sets the environment variables with the needed values 
+* `cd cmake_targets`
+* `./build_oai -I -w USRP --UE` - The "-I" option is needed only once, then you can build without this option
+This should starts the building process in ~/openairinterface5g/cmake_targets/lte_build_oai.
+
+## 
 
 ## Authors
 Under construction
