@@ -218,6 +218,7 @@ Build the eNB supporting USRP B210
 * `source oaienv` - It sets the environment variables with the needed values 
 * `cd cmake_targets`
 * `./build_oai -I -w USRP --eNB` - The "-I" option is needed only once, then you can build without this option
+
 This should starts the building process in ~/openairinterface5g/cmake_targets/lte_build_oai.
 
 ### eNB configuration to Access OpenStack-Based core network
@@ -255,15 +256,50 @@ Build the UE supporting USRP B210
 * `source oaienv` - It sets the environment variables with the needed values 
 * `cd cmake_targets`
 * `./build_oai -I -w USRP --UE` - The "-I" option is needed only once, then you can build without this option
+
 This should starts the building process in ~/openairinterface5g/cmake_targets/lte_build_oai.
 
-## 
+## Running all the components
+### Running Core components
+* HSS
+  * `cd ~/openair-cn/SCRIPTS`
+  * `./run_hss`
+* MME
+  * `cd ~/openair-cn/SCRIPTS`
+  * `./run_mme` - once started, we should see in the HSS log a "MME status changed to active" message
+* SP-GW
+  * `cd ~/openair-cn/SCRIPTS`
+  * `./run_spgw`
+
+### Running eNB
+* `cd ~/openairinterface5g/`
+* `source oaienv`
+* `cd cmake_targets`
+* `sudo -E ./lte_build_oai/build/lte_softmodem -O $OPENAIR_TARGETS/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.tm1.usrpb210.conf`
+
+After a few seconds, we can see a "Associated MME 1" message in the eNB log and finally the eNB starts waiting for connections showing two "got sync" messages.
+
+### Running UE
+This is the more sensitive part because depending on the attenuation that we have in our wires, we have to adjust the rx/tx gain to get the UE connected to the eNB. In our deployment, we have 45 dB attenuation per wire. Before run the UE, we have to install the ue_ip.ko kernel module in order to bring up the OIP interface, oip0, that will be configured with the IP received from the SP-GW through the MME. In order to do so, download and run the script `init_nas.sh` provided in the proyect.
+
+Now, run the UE
+* `cd ~/openairinterface5g/`
+* `source oaienv`
+* `cd cmake_targets/lte_build_oai/build`
+* `sudo -E ./lte_softmodem -U -C2660000000 -r25 --ue-scan-carrier --ue-txgain 85 --ue-rxgain 100`
+
+After that, check that you have an IP address in one of the oip interfaces created by the script.
+
+### Check ip routes
+When all the componets are well connected, we need to check the routes that we have along the path to reach internet (UE physical machine, eNB physical machine and SP-GW virtual machine) in order to allow the UE to reach the internet through the already deployed architecture.
 
 ## Authors
-Under construction
+Ginés García Avilés [website](http://people.networks.imdea.org/~gines_garcia/)
+Carlos Donato Morales [website](http://people.networks.imdea.org/~carlos_donato/)
 
 ## Acknowledgments
 * [5G Norma](https://5gnorma.5g-ppp.eu/)
+* [OpenAirInterface5G](http://www.openairinterface.org/)
 
 
 
