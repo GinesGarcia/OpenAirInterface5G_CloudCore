@@ -280,7 +280,10 @@ This should starts the building process in ~/openairinterface5g/cmake_targets/lt
 After a few seconds, we can see a "Associated MME 1" message in the eNB log and finally the eNB starts waiting for connections showing two "got sync" messages.
 
 ### Running UE
-This is the more sensitive part because depending on the attenuation that we have in our wires, we have to adjust the rx/tx gain to get the UE connected to the eNB. In our deployment, we have 45 dB attenuation per wire. Before run the UE, we have to install the ue_ip.ko kernel module in order to bring up the OIP interface, oip0, that will be configured with the IP received from the SP-GW through the MME. In order to do so, download and run the script `init_nas.sh` provided in the proyect.
+This is the more sensitive part because depending on the attenuation that we have in our wires, we have to adjust the rx/tx gain to get the UE connected to the eNB. In our deployment, we have 45 dB attenuation per wire. Before run the UE, we have to install the ue_ip.ko kernel module in order to bring up the OIP interface, oip0, that will be configured with the IP received from the SP-GW through the MME. In order to do so, we have to insert the ue_ip.ko module provided by OpenAirInterface5g.
+* `cd ~/openairinterface5g/`
+* `source oaienv`
+* `sudo insmod $OPENAIR_TARGETS/bin/ue_ip.ko`
 
 Now, run the UE
 * `cd ~/openairinterface5g/`
@@ -288,7 +291,7 @@ Now, run the UE
 * `cd cmake_targets/lte_build_oai/build`
 * `sudo -E ./lte-softmodem -U -C2660000000 -r25 --ue-scan-carrier --ue-txgain 85 --ue-rxgain 100`
 
-After that, check that you have an IP address in one of the oip interfaces created by the script.
+After that, check that you have an IP address in one of the oip interfaces created by the ue_ip.ko module (usually oip1).
 
 ### Check ip routes
 When all the componets are well connected, we need to check the routes that we have along the path to reach internet (UE physical machine, eNB physical machine and SP-GW virtual machine) in order to allow the UE to reach the internet through the already deployed architecture.
