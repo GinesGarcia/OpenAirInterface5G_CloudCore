@@ -48,7 +48,7 @@ Before start configuring the core components, we have to setup a VPN between eNB
 Log into the HSS virtual machine and follow the instructions below:
 
 * `sudo apt-get install mysql-server`
-* `cd ~/openairinterface5g/SCRIPTS/`
+* `cd ~/openair-cn/SCRIPTS/`
 * `./build_hss -i`
 * Create folder for configuration files
   * `sudo mkdir -p /usr/local/etc/oai/freeDiameter`
@@ -100,7 +100,7 @@ HSS :
 The hostname of this machine must be its Identity, in our case "mme". We can change this identifier by modifying "/etc/hosts" and "/etc/hostsname". Then, restart the virtual machine.
 Log into the MME virtual machine and follow the instructions below:
 
-* `cd ~/openairinterface5g/SCRIPTS/`
+* `cd ~/openair-cn/SCRIPTS/`
 * `sudo mkdir -p /usr/local/etc/oai/freeDiameter`
 * `./build_mme -i`
 * `sudo cp OPENAIRCN_DIR/ETC/mme.conf /usr/local/etc/oai`
@@ -149,7 +149,7 @@ S-GW :
 <summary>SP-GW Configuration and Building</summary>
 
 ### SP-GW Configuration and Building
-* `cd ~/openairinterface5g/SCRIPTS/`
+* `cd ~/openair-cn/SCRIPTS/`
 * `sudo mkdir -p /usr/local/etc/oai/freeDiameter`
 * `./build_spgw -i`
 * `sudo vim /etc/hosts`
