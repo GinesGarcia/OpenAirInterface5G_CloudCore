@@ -19,6 +19,7 @@ The core components will be deployed in a cloud based system. In this tutorial, 
   * `sudo dpkg -i linux-headers-4.7.7-oaiepc_4.7.7-oaiepc-10.00.Custom_amd64.deb linux-image-4.7.7-oaiepc_4.7.7-oaiepc-10.00.Custom_amd64.deb`
 * Download the latest development branch of OpenAir-cn
   * `git clone https://gitlab.eurecom.fr/oai/openair-cn.git`
+  * `cd openair-cn/`
   * `git checkout develop`
   * `git fetch && git pull`
 
