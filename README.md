@@ -101,11 +101,11 @@ HSS :
 The hostname of this machine must be its Identity, in our case "mme". We can change this identifier by modifying "/etc/hosts" and "/etc/hostsname". Then, restart the virtual machine.
 Log into the MME virtual machine and follow the instructions below:
 
-* `cd ~/openair-cn/SCRIPTS/`
+* `cd ~/openair-cn/scripts/`
 * `sudo mkdir -p /usr/local/etc/oai/freeDiameter`
 * `./build_mme -i`
-* `sudo cp OPENAIRCN_DIR/ETC/mme.conf /usr/local/etc/oai`
-* `sudo cp OPENAIRCN_DIR/ETC/mme_fd.conf /usr/local/etc/oai/freeDiameter/`
+* `sudo cp ~/openair-cn/etc/mme.conf /usr/local/etc/oai`
+* `sudo cp ~/openair-cn/etc/mme_fd.conf /usr/local/etc/oai/freeDiameter/`
 * `./check_mme_s6a_certificate /usr/local/etc/oai/freeDiameter/ mme.openair4G.eur`
 * `vim /usr/local/etc/oai/mme.conf`
 ```
@@ -150,7 +150,7 @@ S-GW :
 <summary>SP-GW Configuration and Building</summary>
 
 ### SP-GW Configuration and Building
-* `cd ~/openair-cn/SCRIPTS/`
+* `cd ~/openair-cn/scripts/`
 * `sudo mkdir -p /usr/local/etc/oai/freeDiameter`
 * `./build_spgw -i`
 * `sudo vim /etc/hosts`
