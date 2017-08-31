@@ -11,12 +11,12 @@ The attenuation between UE and eNB should be adjusted between 40 and 60 dB.
 ## Core components deployment (HSS, MME and SP-GW).
 The core components will be deployed in a cloud based system. In this tutorial, we are going to use OpenStack as a virtual machines manager. For this deployment we need three virtual machines, one per OpenAirCN componet with the following configuration:
 * Ubuntu 14.04 LTS (64-bits)
+* Install git 
+  * `sudo apt-get install git`
 * Kernel setup: Install 4.7.x kernel from pre-compiled debian package
   * `git clone https://gitlab.eurecom.fr/oai/linux-4.7.x.git`
   * `cd linux-4.7.x`
   * `sudo dpkg -i linux-headers-4.7.7-oaiepc_4.7.7-oaiepc-10.00.Custom_amd64.deb linux-image-4.7.7-oaiepc_4.7.7-oaiepc-10.00.Custom_amd64.deb`
-* Install git 
-  * `sudo apt-get install git`
 * Download the latest development branch of OpenAir-cn
   * `git clone https://gitlab.eurecom.fr/oai/openair-cn.git`
   * `git checkout develop`
