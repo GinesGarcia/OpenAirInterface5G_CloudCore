@@ -49,7 +49,7 @@ Before start configuring the core components, we have to setup a VPN between eNB
 Log into the HSS virtual machine and follow the instructions below:
 
 * `sudo apt-get install mysql-server`
-* `cd ~/openair-cn/SCRIPTS/`
+* `cd ~/openair-cn/scripts/`
 * `./build_hss -i`
 * Create folder for configuration files
   * `sudo mkdir -p /usr/local/etc/oai/freeDiameter`
