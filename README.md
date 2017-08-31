@@ -91,7 +91,7 @@ HSS :
   TLS_CA = "/usr/local/etc/oai/freeDiameter/hss.cacert.pem";
 ```
  * Load example database only in the first run
-   * `sudo ./run_hss -i ~/openairinterface5g/SRC/OAI_HSS/db/oai_db.sql`
+   * `sudo ./run_hss -i ~/openair-cn/src/oai_hss/db/oai_db.sql`
 </details>
 
 <details>
