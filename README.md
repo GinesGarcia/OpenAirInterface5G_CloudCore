@@ -54,8 +54,8 @@ Log into the HSS virtual machine and follow the instructions below:
 * Create folder for configuration files
   * `sudo mkdir -p /usr/local/etc/oai/freeDiameter`
 * Copy Configuration files to the folder
-  * `sudo cp OPENAIRCN_DIR/ETC/hss.conf /usr/local/etc/oai`
-  * `sudo cp OPENAIRCN_DIR/ETC/acl.conf OPENAIRCN_DIR/ETC/hss_fd.conf /usr/local/etc/oai/freeDiameter`
+  * `sudo cp ~/openair-cn/etc/hss.conf /usr/local/etc/oai`
+  * `sudo cp ~/openair-cn/etc/acl.conf ~/openair-cn/etc/hss_fd.conf /usr/local/etc/oai/freeDiameter`
 * Set FQDN for the HSS by modifying `/etc/hosts` file
   * `127.0.1.1 hss.openair4G.eur hss`
 * Generate Certificates for HSS
