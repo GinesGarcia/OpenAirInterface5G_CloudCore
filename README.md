@@ -92,6 +92,10 @@ HSS :
 ```
  * Load example database only in the first run
    * `sudo ./run_hss -i ~/openair-cn/src/oai_hss/db/oai_db.sql`
+ * Change mmeidentity table from the oai\_db database
+   * Change "yang.openair4G.eur" to "mme.openair4G.eur"
+   * Option 1: Change it using mysql command line
+   * Option 2: Change it using phpMyAdmin
 </details>
 
 <details>
