@@ -161,6 +161,7 @@ S-GW :
 ```
 127.0.1.1    sgpw.openair4G.eur spgw
 ```
+* `sudo cp ~/openair-cn/etc/spgw.conf /usr/local/etc/oai/`
 * `sudo vim /usr/local/etc/oai/spgw.conf`
 ```
 S-GW :
