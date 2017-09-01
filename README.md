@@ -93,10 +93,14 @@ HSS :
  * Load example database only in the first run
    * `sudo ./run_hss -i ~/openair-cn/src/oai_hss/db/oai_db.sql`
  * Change "mmehost" field from mmeidentity table of oai\_db database
-   * Edit row with "idmmeidentity" value equal to 4
-   * Change "**yang**.openair4G.eur" to "**mme**.openair4G.eur"
-   * Option 1: Change it using mysql command line
-   * Option 2: Change it using phpMyAdmin
+   * Option 1: Change it using phpMyAdmin
+    * Edit row with "idmmeidentity" value equal to 4
+    * Change "**yang**.openair4G.eur" to "**mme**.openair4G.eur"
+   * Option 2: Change it using mysql command line
+    * `mysql -u root -p`
+    * `use oai_db`
+    * `UPDATE mmeidentity SET mmehost = 'mme.openair4G.eur' WHERE idmmeidentity = 4;`
+
 </details>
 
 <details>
