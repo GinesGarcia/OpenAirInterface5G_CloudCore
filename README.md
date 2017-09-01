@@ -152,6 +152,8 @@ S-GW :
   ConnectPeer= "hss.openair4G.eur" { ConnectTo = "192.168.40.3"; No_SCTP ; No_IPv6;
   Prefer_TCP; No_TLS; port = 3868; realm = "openair4G.eur";};
 ```
+The MME setup is finished.
+Run the MME by running the script `./run_mme` in `~/openair-cn/scripts/` 
 </details>
 
 
