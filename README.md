@@ -137,7 +137,7 @@ S-GW :
   SGW_IPV4_ADDRESS_FOR_S11 = "192.168.30.3/24";           # YOUR NETWORK CONFIG HERE
 };
 ```
-* `vim /usr/local/etc/oai/freeDiameter/mme_fd.conf`
+* Edit the configuration `vim /usr/local/etc/oai/freeDiameter/mme_fd.conf`
 ```
   # Identity of MME
   Identity = "mme.openair4G.eur";
@@ -152,7 +152,7 @@ S-GW :
   ConnectPeer= "hss.openair4G.eur" { ConnectTo = "192.168.40.3"; No_SCTP ; No_IPv6;
   Prefer_TCP; No_TLS; port = 3868; realm = "openair4G.eur";};
 ```
-The MME setup is finished.
+The MME setup is finished.  
 Run the MME by running the script `./run_mme` in `~/openair-cn/scripts/` 
 </details>
 
