@@ -204,6 +204,11 @@ P-GW =
 };
 
 ```
+Build the SPGW using the command `./build_spgw` in `~/openair-cn/scripts/`  
+* In case the build failed (NETTLE VERSION missing), run first the command `./build_mme -i` as in the MME setup  
+
+After successful build, run the SPGW with the command `./run_spgw`  
+
 </details>
 
 ## Kernel requirements for eNB and UE
