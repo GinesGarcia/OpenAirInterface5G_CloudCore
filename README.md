@@ -232,6 +232,7 @@ Remove all power management features in the BIOS (sleep states, in particular C-
 ## OAI eNB deployment
 ### Build eNB
 Build the eNB supporting USRP B210
+* `git clone https://gitlab.eurecom.fr/oai/openairinterface5g.git`
 * `cd ~/openairinterface5g`
 * `source oaienv` - It sets the environment variables with the needed values 
 * `cd cmake_targets`
