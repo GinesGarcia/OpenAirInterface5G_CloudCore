@@ -321,26 +321,26 @@ The tutorial must be executed until the **OAI UE deployment** part.
 Re-configuration in the eNB, MME and eNB is required.
 
 ### eNB + MME configuration
-TAI parameters in the MME and eNB should be the same.  
-In the eNB simulation configuration file (on the **eNB machine**)   
-`~/OPENAIR_DIR/target/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.generic.oaisim.local_mme.conf`    
-the TAI list should have these parameteres set:  
+TAI parameters in the MME and eNB should be the same.    
+In the eNB simulation configuration file (on the **eNB machine**)     
+`~/OPENAIR_DIR/target/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.generic.oaisim.local_mme.conf`      
+the TAI list should have these parameteres set:    
 ```
 tracking_area_code  =  "1";
 mobile_country_code =  "208";
 mobile_network_code =  "93"; 
 ```
-In the MME configuration file (on the **MME machine**)
-`/usr/local/etc/oai/mme.conf`  
-they are set as:  
+In the MME configuration file (on the **MME machine**)  
+`/usr/local/etc/oai/mme.conf`    
+they are set as:    
 ``` 
  TAI_LIST = (
          {MCC="208" ; MNC="93";  TAC = "1"; }                                 # YOUR TAI CONFIG HERE
     );
 ```
 ### eNB + HSS configuration
-The IMSI, the key and mmeidentity_idmmeidentity of the UE have to be correctly recorded in the HSS database.     
-**In the eNB** (machine), the value of the key is taken from the *USIM configuration* header file:    
+The IMSI, the key and mmeidentity_idmmeidentity of the UE have to be correctly recorded in the HSS database.       
+**In the eNB** (machine), the value of the key is taken from the *USIM configuration* header file:      
 `vim ~/OPENAIR_DIR/openair3/NAS/UE/API/USIM/usim_api.h`  
 at the begining:
 ```
@@ -351,9 +351,9 @@ at the begining:
 #define USIM_API_K_VALUE        "fec86ba6eb707ed08905757b1bb44b8f"
 
 ```
-The **USIM_API_K_VALUE** is updated in the *users* table of the **HSS** database.   
-This is done using phpMyAdmin or using mysql cli (command line interface).  
-On the **HSS (machine)** in the **_users_** table:  
+The **USIM_API_K_VALUE** is updated in the *users* table of the **HSS** database.     
+This is done using phpMyAdmin or using mysql cli (command line interface).    
+On the **HSS (machine)** in the **_users_** table:    
 * Option 1: Change it using phpMyAdmin
      * Edit row with **imsi** value equal to `208930100001111`
      * Change its **key** column with the *USIM_API_K_VALUE* as `x'fec86ba6eb707ed08905757b1bb44b8f'`
