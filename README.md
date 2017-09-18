@@ -315,10 +315,75 @@ After that, check that you have an IP address in one of the oip interfaces creat
 ### Check ip routes
 When all the componets are well connected, we need to check the routes that we have along the path to reach internet (UE physical machine, eNB physical machine and SP-GW virtual machine) in order to allow the UE to reach the internet through the already deployed architecture.
 
+## Using simulated UE
+The UE can be simulated if there is absence of hardware.  
+The tutorial must be executed until the **OAI UE deployment** part.  
+Re-configuration in the eNB, MME and eNB is required.
+
+### eNB + MME configuration
+TAI parameters in the MME and eNB should be the same.  
+In the eNB simulation configuration file  
+`~/OPENAIR_DIR/target/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.generic.oaisim.local_mme.conf`  
+the TAI list should have these parameteres set:  
+```
+tracking_area_code  =  "1";
+mobile_country_code =  "208";
+mobile_network_code =  "93"; 
+```
+In the MME configuration file  
+`/usr/local/etc/oai/mme.conf`  
+they are set as:  
+``` 
+ TAI_LIST = (
+         {MCC="208" ; MNC="93";  TAC = "1"; }                                 # YOUR TAI CONFIG HERE
+    );
+```
+### eNB + HSS configuration
+The IMSI, the key and mmeidentity_idmmeidentity of the UE have to be correctly recorded in the HSS database.  
+First <b>in the eNB</b>, the value of the key is taken from the *USIM configuration* header file:  
+`vim ~/OPENAIR_DIR/openair3/NAS/UE/API/USIM/usim_api.h`  
+at the begining:
+```
+/*
+ * Subscriber authentication security key
+ */
+#define USIM_API_K_SIZE         16
+#define USIM_API_K_VALUE        "fec86ba6eb707ed08905757b1bb44b8f"
+
+```
+The **USIM_API_K_VALUE** is updated in the *users* table of the **HSS** database.
+This is done using phpMyAdmin or using mysql cli (command line interface).
+In the HSS in the **_users_** table:  
+* Option 1: Change it using phpMyAdmin
+     * Edit row with **imsi** value equal to `208930100001111`
+     * Change its **key** column with the *USIM_API_K_VALUE* as `x'fec86ba6eb707ed08905757b1bb44b8f'`
+* Option 2: Change it using mysql command line
+     * `mysql -u root -p`
+     * `use oai_db`
+     * `UPDATE users SET users.key= x'fec86ba6eb707ed08905757b1bb44b8f' WHERE imsi = 208930100001111;`
+     
+### Run the simulation
+Run the simulation sequentially:  SPGW :arrow_right: HSS :arrow_right: MME :arrow_right: (eNB + UE)  
+- **SPGW**: 
+  * `cd ~/openair-cn/SCRIPTS`
+  * `./run_spgw`
+- **HSS**:
+  * `cd ~/openair-cn/SCRIPTS`
+  * `./run_hss`
+- **MME**:
+  * `cd ~/openair-cn/SCRIPTS`
+  * `./run_mme`  
+- **eNB + UE**:  
+  * `cd ~/openairinterface5g/cmake_targets/tools`
+  * `sudo -E ./run_enb_ue_virt_s1`
+  
+
 ## Authors
 Ginés García Avilés [website](http://people.networks.imdea.org/~gines_garcia/)
 
 Carlos Donato Morales [website](http://people.networks.imdea.org/~carlos_donato/)
+
+Kiril Antevski [website](https://scholar.google.es/citations?user=k-EuLYkAAAAJ)
 
 ## Acknowledgments
 * [5G Norma](https://5gnorma.5g-ppp.eu/)
