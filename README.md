@@ -387,6 +387,7 @@ Kiril Antevski [website](https://scholar.google.es/citations?user=k-EuLYkAAAAJ)
 
 ## Acknowledgments
 * [5G Norma](https://5gnorma.5g-ppp.eu/)
+* [5G MoNArch](https://5g-monarch.eu/)
 * [OpenAirInterface5G](http://www.openairinterface.org/)
 
 
